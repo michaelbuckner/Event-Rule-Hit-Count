@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="hit_count" label="Hit count" language="en" table="x_snc_event_rule_h_event_rule_hit_count">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>hit_count</element>
+            <help/>
+            <hint/>
+            <label>Hit count</label>
+            <language>en</language>
+            <name>x_snc_event_rule_h_event_rule_hit_count</name>
+            <plural>Hit counts</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>mike.buckner</sys_created_by>
+            <sys_created_on>2017-11-08 21:16:45</sys_created_on>
+            <sys_id>22976eb1db92c70059797f6bbf9619a7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Hit count</sys_name>
+            <sys_package display_value="Event Rule Hit Count" source="x_snc_event_rule_h">2ac62671db92c70059797f6bbf9619e9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Event Rule Hit Count">2ac62671db92c70059797f6bbf9619e9</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_event_rule_h_event_rule_hit_count_hit_count_en</sys_update_name>
+            <sys_updated_by>mike.buckner</sys_updated_by>
+            <sys_updated_on>2017-11-08 21:16:45</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

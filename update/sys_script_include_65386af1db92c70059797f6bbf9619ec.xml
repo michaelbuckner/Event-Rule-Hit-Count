@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_event_rule_h.ProcessHitCount</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>ProcessHitCount</name>
+        <script><![CDATA[var ProcessHitCount = Class.create();
+ProcessHitCount.prototype = {
+	initialize: function() {
+	},
+	
+	process: function() {
+		// Get all events
+		var event = new GlideRecord('em_event');
+		//event.setLimit(1000);
+		event.query();
+		
+		// Regex to extract the rule name
+		//var r = new SNC.Regex('/Event rule applied: (.+)/');
+		// Arrays for shuffling stuff
+		var eventRules = [];
+		var compressed = [];
+		
+		// Match all events against the Regex. Store the event rule names in array
+		while (event.next()) {
+			if (event.processing_notes.match(/Event rule applied: (.+)/) !== null) {
+				//gs.print(r.match(event.processing_notes)[1]);
+				eventRules.push(event.processing_notes.match(/Event rule applied: (.+)/)[1]);
+				// No match = No rule
+			} else {
+				eventRules.push("No Rule");
+			}
+		}
+		
+		// Copy the event rule array
+		var dedupedRules = eventRules.slice(0);
+		
+		// Loop over original event rule array
+		for (var i in eventRules) {
+			// Track hit count
+			var ruleCounter = 0;
+			// Loop over copied array
+			for (var w in dedupedRules) {
+				// Check for dupes
+				if (eventRules[i] == dedupedRules[w]) {
+					// Delete dupes and increment counter
+					ruleCounter++;
+					delete dedupedRules[w];
+				}
+			}
+			
+			// Push deduped rule names and hitcount to a final array
+			if (ruleCounter > 0) {
+				var a = {};
+					a.value = eventRules[i];
+					a.count = ruleCounter;
+					compressed.push(a);
+					
+				}
+			}
+			
+			// Print out the hitcount
+			for (var compressedRule in compressed) {
+				gs.print(compressed[compressedRule].value + ' ' + compressed[compressedRule].count);
+			}
+		
+		return compressed;
+		
+		},
+		
+		type: 'ProcessHitCount'
+	};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>mike.buckner</sys_created_by>
+        <sys_created_on>2017-11-08 21:21:03</sys_created_on>
+        <sys_id>65386af1db92c70059797f6bbf9619ec</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>ProcessHitCount</sys_name>
+        <sys_package display_value="Event Rule Hit Count" source="x_snc_event_rule_h">2ac62671db92c70059797f6bbf9619e9</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Event Rule Hit Count">2ac62671db92c70059797f6bbf9619e9</sys_scope>
+        <sys_update_name>sys_script_include_65386af1db92c70059797f6bbf9619ec</sys_update_name>
+        <sys_updated_by>mike.buckner</sys_updated_by>
+        <sys_updated_on>2017-11-08 21:38:00</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Event Rule Hit count" max_length="40" name="x_snc_event_rule_h_event_rule_hit_count" type="collection">
+        <element label="Event Rule" max_length="32" name="event_rule" reference="em_match_rule" type="reference"/>
+        <element label="Hit count" max_length="40" name="hit_count" type="integer"/>
+        <index name="index">
+            <element name="event_rule"/>
+        </index>
+    </element>
+</database>
